@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ExpressionEngineApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExpressionEngineApplication.class, args);
+		System.out.println("Hello World!");
 	}
 
 }
