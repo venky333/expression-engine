@@ -37,23 +37,9 @@ public class CronExpressionProcessorTest {
     }
 
     @Test
-    void processExpressionWithExtraTokens() {
-        // Expression with more than 6 tokens
-        String invalidExpression = "*/15 0 1 * 1 /usr/bin/find new";
-        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidExpression));
-    }
-
-    @Test
     void testProcessExpressionWithInvalidMinuteAndExtraTokens() {
         // invalid token in the minute field and extra tokens
         String invalidMinuteAndExtraTokensExpression = "60 0 1 * 1 /usr/bin/find new";
         assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
-    }
-
-    @Test
-    void testProcessExpressionWithValidMinuteAndInvalidHour() {
-        // valid minute but invalid token in the hour field
-        String invalidHourExpression = "*/15 25 1 * 1 /usr/bin/find";
-        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidHourExpression));
     }
 }

@@ -27,6 +27,26 @@ public class ConstantsTest {
     }
 
     @Test
+    void testForwardSlash() {
+        assertEquals("/", FORWARD_SLASH);
+    }
+
+    @Test
+    void testNonNegativeNumbersRegex() {
+        assertEquals("^\\d+$", NON_NEGATIVE_NUMBERS_REGEX);
+    }
+
+    @Test
+    void testHyphen() {
+        assertEquals("-", HYPHEN);
+    }
+
+    @Test
+    void testComma() {
+        assertEquals(",", COMMA);
+    }
+
+    @Test
     void testPrivateConstructor() {
         assertThrows(InvocationTargetException.class, () -> {
             Constructor<Constants> constructor = Constants.class.getDeclaredConstructor();
