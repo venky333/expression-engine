@@ -5,7 +5,7 @@ build:
 	./mvnw clean install
 
 .PHONY: run
-run:
+run: build
 	java -jar ./target/expression-engine-0.0.1.jar "$(Arguments)"
 
 %::
