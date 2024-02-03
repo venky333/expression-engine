@@ -24,7 +24,7 @@ public class NumberTest {
     @Test
     void testGetExplanationForTokenValueGreaterThanMaximum() {
         // given
-        Token token = new Token("60 * * * * /usr/bin/find", 0, 59);
+        Token token = new Token("60", 0, 59);
         Number number = new Number(token);
 
         assertThrows(RuntimeException.class, number::getExplanation);
@@ -33,7 +33,7 @@ public class NumberTest {
     @Test
     void testGetExplanationForTokenValueLessThanMinimum() {
         // given
-        Token token = new Token("2 * * * * /usr/bin/find", 6, 59);
+        Token token = new Token("2", 6, 59);
         Number number = new Number(token);
 
         assertThrows(RuntimeException.class, number::getExplanation);
@@ -42,7 +42,7 @@ public class NumberTest {
     @Test
     void testGetExplanationForTokenValueNegative() {
         // given
-        Token token = new Token("-2 * * * * /usr/bin/find", 6, 59);
+        Token token = new Token("-2", 6, 59);
         Number number = new Number(token);
 
         assertThrows(RuntimeException.class, number::getExplanation);
@@ -51,7 +51,7 @@ public class NumberTest {
     @Test
     void testGetExplanationForTokenValueDecimal() {
         // given
-        Token token = new Token("0.2 * * * * /usr/bin/find", 6, 59);
+        Token token = new Token("0.2", 6, 59);
         Number number = new Number(token);
 
         assertThrows(RuntimeException.class, number::getExplanation);

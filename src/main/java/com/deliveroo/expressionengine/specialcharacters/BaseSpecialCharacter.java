@@ -18,7 +18,8 @@ public abstract class BaseSpecialCharacter {
             return new Slash(token);
         if (token.getValue().matches(NON_NEGATIVE_NUMBERS_REGEX))
             return new Number(token);
-
+        if (token.getValue().contains(HYPHEN))
+            return new Hyphen(token);
         throw new RuntimeException(token.getValue() + " token is not supported now");
     }
 
