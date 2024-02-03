@@ -3,6 +3,7 @@ package com.deliveroo.expressionengine.specialcharacters;
 import com.deliveroo.expressionengine.tokens.Token;
 
 import static com.deliveroo.expressionengine.util.Constants.ASTERISK;
+import static com.deliveroo.expressionengine.util.Constants.FORWARD_SLASH;
 
 public abstract class BaseSpecialCharacter {
     public Token token;
@@ -14,8 +15,15 @@ public abstract class BaseSpecialCharacter {
     public static BaseSpecialCharacter getBaseSpecialCharacterByToken(final Token token) {
         if (token.getValue().equalsIgnoreCase(ASTERISK))
             return new Asterisk(token);
+        if (token.getValue().contains(FORWARD_SLASH))
+            return new Slash(token);
         return null;
     }
 
     public abstract String getExplanation();
+
+    public void validateDerivedValueRangeWithTokenMinimumAndMaximum(final Integer firstValue, final Integer secondValue) {
+        if (firstValue < this.token.getMinimum() || firstValue > this.token.getMaximum() || secondValue < this.token.getMinimum() || secondValue > this.token.getMaximum())
+            throw new RuntimeException("starting or limiting values are not in expected limits. minimum expected value: " + this.token.getMinimum() + " maximum expected value: " + this.token.getMaximum() + " and given values are first: " + firstValue + " second value: " + secondValue);
+    }
 }
