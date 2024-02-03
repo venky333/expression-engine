@@ -20,6 +20,8 @@ public abstract class BaseSpecialCharacter {
             return new Number(token);
         if (token.getValue().contains(HYPHEN))
             return new Hyphen(token);
+        if (token.getValue().contains(COMMA))
+            return new Comma(token);
         throw new RuntimeException(token.getValue() + " token is not supported now");
     }
 
