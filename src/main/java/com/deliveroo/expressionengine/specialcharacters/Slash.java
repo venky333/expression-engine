@@ -71,8 +71,6 @@ public class Slash extends BaseSpecialCharacter {
 
     private String handleHyphenCase(String hyphenPart, Integer secondSubTokenValue) {
         String[] subTokenHyphenSplitValues = hyphenPart.split(HYPHEN);
-        if (subTokenHyphenSplitValues.length != 2)
-            throw new RuntimeException("2 valid parts are required in hyphen separated values");
         validateHyphenCase(subTokenHyphenSplitValues, secondSubTokenValue);
 
         Integer subTokenHyphenSplitValueOneInteger = valueOf(subTokenHyphenSplitValues[0]);
@@ -86,8 +84,6 @@ public class Slash extends BaseSpecialCharacter {
 
     private String handleCommaCase(String commaPart, Integer secondSubTokenValue) {
         String[] subTokenCommaSplitValues = commaPart.split(COMMA);
-        if (subTokenCommaSplitValues.length != 2)
-            throw new RuntimeException("2 valid parts are required in comma separated values");
         validateCommaCase(subTokenCommaSplitValues, secondSubTokenValue);
 
         Integer subTokenCommaSplitValueOneInteger = valueOf(subTokenCommaSplitValues[0]);
