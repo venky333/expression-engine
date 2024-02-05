@@ -51,6 +51,27 @@ public class CronExpressionProcessorTest {
     }
 
     @Test
+    void testProcessValidExpressionForMinuteWithSlash() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("*/15 0 1 * 1 /usr/bin/find");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessValidExpressionForMinuteWithHyphen() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("1-5/15 0 1 * 1 /usr/bin/find");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessValidExpressionForMinuteWithComma() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("1,5/15 0 1 * 1 /usr/bin/find");
+        // no exception should be thrown
+    }
+
+    @Test
     void testProcessExpressionWithInvalidMinute() {
         // invalid token in the minute field and extra tokens
         String invalidMinuteAndExtraTokensExpression = "60 0 1 * 1 /usr/bin/find new";
@@ -118,5 +139,12 @@ public class CronExpressionProcessorTest {
         // valid expression with all required fields
         new CronExpressionProcessor("15 0 1 * 1 /usr/bin/find new");
         // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithUnknownSpecialCharacter() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "15 > 1 * 8 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
     }
 }
