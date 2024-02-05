@@ -142,7 +142,7 @@ public class CronExpressionProcessorTest {
     }
 
     @Test
-    void testProcessExpressionWithUnknownSpecialCharacter() {
+    void testProcessExpressionWithUnknownSpecialCharacterInHour() {
         // invalid token in the minute field and extra tokens
         String invalidMinuteAndExtraTokensExpression = "15 > 1 * 8 /usr/bin/find new";
         assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
