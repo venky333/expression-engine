@@ -42,4 +42,109 @@ public class CronExpressionProcessorTest {
         String invalidMinuteAndExtraTokensExpression = "60 0 1 * 1 /usr/bin/find new";
         assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
     }
+
+    @Test
+    void testProcessValidExpressionForMinute() {
+        // valid expression with all required fields
+        new CronExpressionProcessor(VALID_EXPRESSION);
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessValidExpressionForMinuteWithSlash() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("*/15 0 1 * 1 /usr/bin/find");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessValidExpressionForMinuteWithHyphen() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("1-5/15 0 1 * 1 /usr/bin/find");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessValidExpressionForMinuteWithComma() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("1,5/15 0 1 * 1 /usr/bin/find");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithInvalidMinute() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "60 0 1 * 1 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
+    }
+
+    @Test
+    void testProcessValidExpressionForHour() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("15 0 1 * 1 /usr/bin/find new");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithInvalidHour() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "15 24 1 * 1 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
+    }
+
+    @Test
+    void testProcessValidExpressionForDayOfMonth() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("15 0 1 * 1 /usr/bin/find new");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithInvalidDayOfMonth() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "15 20 32 * 1 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
+    }
+
+    @Test
+    void testProcessValidExpressionForMonth() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("15 0 1 * 1 /usr/bin/find new");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithInvalidMonth() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "15 20 1 13 1 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
+    }
+
+    @Test
+    void testProcessValidExpressionForDayOfWeek() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("15 0 1 * 1 /usr/bin/find new");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithInvalidDayOfWeek() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "15 24 1 * 8 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
+    }
+
+    @Test
+    void testProcessValidExpressionForExtraCommands() {
+        // valid expression with all required fields
+        new CronExpressionProcessor("15 0 1 * 1 /usr/bin/find new");
+        // no exception should be thrown
+    }
+
+    @Test
+    void testProcessExpressionWithUnknownSpecialCharacterInHour() {
+        // invalid token in the minute field and extra tokens
+        String invalidMinuteAndExtraTokensExpression = "15 > 1 * 8 /usr/bin/find new";
+        assertThrows(RuntimeException.class, () -> new CronExpressionProcessor(invalidMinuteAndExtraTokensExpression));
+    }
 }

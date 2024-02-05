@@ -24,6 +24,7 @@ Requirements needed to run this application in local
 
 Run the following command in terminal after navigating to the root of the repository
 
+1. Evaluating expression `*/15 0 1,15 * 1-5 /usr/bin/find`
 ```
 make run "*/15 0 1,15 * 1-5 /usr/bin/find"
 ```
@@ -38,6 +39,23 @@ month         1 2 3 4 5 6 7 8 9 10 11 12
 day of week   1 2 3 4 5
 command       /usr/bin/find
 ```
+
+2. Evaluating expression `*/15 0 1,15 * 1-5 /usr/bin/find`
+```
+make run "1-16/15 23 1,15 * 1-7 /usr/bin/find"
+```
+
+## Output
+
+```
+minute        1 16
+hour          23
+day of month  1 15
+month         1 2 3 4 5 6 7 8 9 10 11 12
+day of week   1 2 3 4 5 6 7
+command       /usr/bin/find
+```
+
 
 ## Test cases
 

@@ -22,7 +22,7 @@ public class CronExpressionProcessor {
                 .append("hour          ").append(new Token(tokens[1], 0, 23).process()).append("\n")
                 .append("day of month  ").append(new Token(tokens[2], 1, 31).process()).append("\n")
                 .append("month         ").append(new Token(tokens[3], 1, 12).process()).append("\n")
-                .append("day of week   ").append(new Token(tokens[4], 0, 6).process()).append("\n")
+                .append("day of week   ").append(new Token(tokens[4], 1, 7).process()).append("\n")
                 .append("command       ").append(String.join(EMPTY_SPACE, Arrays.copyOfRange(tokens, 5, tokens.length)));
 
         // output
